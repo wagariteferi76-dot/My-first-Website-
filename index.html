@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Baha Ifaa</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --blue:#07579b;
+  --blue2:#168bd0;
+  --gold:#ffd21c;
+  --bg:#f3f7fb;
+  --card:#ffffff;
+  --text:#202124;
+  --muted:#68717c;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding-bottom:82px;
+  transition:.3s;
+}
+
+body.dark{
+  --bg:#10151b;
+  --card:#1b252e;
+  --text:#f5f7f9;
+  --muted:#b7c0c8;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue2)
+    );
+
+  color:white;
+  text-align:center;
+}
+
+
+/* =========================
+   PLACEHOLDER IMAGE
+========================= */
+
+.cover{
+  height:245px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      #fff3 0,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #064f8d,
+      #16a0d7
+    );
+
+  position:relative;
+  overflow:hidden;
+}
+
+.cover::before{
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  border-radius:50%;
+
+  background:#ffd21c;
+
+  top:35px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  box-shadow:
+    0 0 45px #ffd21c99;
+}
+
+.coverIcon{
+  position:relative;
+  z-index:2;
+
+  font-size:75px;
+
+  text-shadow:
+    0 5px 15px #0006;
+}
+
+
+.headerText{
+  padding:17px 10px 20px;
+}
+
+.headerText h1{
+  font-size:30px;
+}
+
+.headerText p{
+  margin-top:7px;
+  font-size:17px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+  width:100%;
+  max-width:760px;
+  margin:auto;
+  padding:15px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card,
+.song{
+  background:var(--card);
+
+  border-radius:18px;
+
+  padding:18px;
+
+  margin-bottom:15px;
+
+  box-shadow:
+    0 4px 18px #00000014;
+}
+
+.card h2{
+  color:var(--blue);
+  margin-bottom:10px;
+}
+
+.dark .card h2,
+.dark .song h3{
+  color:#62b7ff;
+}
+
+.card p{
+  line-height:1.8;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+input,
+textarea,
+select{
+
+  width:100%;
+
+  padding:13px;
+
+  margin:
+    6px 0 12px;
+
+  border:
+    1px solid #d0d8df;
+
+  border-radius:11px;
+
+  font-size:16px;
+
+  background:var(--card);
+
+  color:var(--text);
+
+}
+
+textarea{
+
+  min-height:240px;
+
+  resize:vertical;
+
+  line-height:1.8;
+
+}
+
+
+/* =========================
+   ROW
+========================= */
+
+.row{
+
+  display:flex;
+
+  gap:9px;
+
+}
+
+.row > *{
+  flex:1;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn{
+
+  border:0;
+
+  border-radius:11px;
+
+  padding:
+    12px 14px;
+
+  font-size:14px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+}
+
+.blue{
+  background:#1976d2;
+  color:white;
+}
+
+.green{
+  background:#43a047;
+  color:white;
+}
+
+.red{
+  background:#e53935;
+  color:white;
+}
+
+.orange{
+  background:#fb8c00;
+  color:white;
+}
+
+.purple{
+  background:#8e24aa;
+  color:white;
+}
+
+.gray{
+  background:#68717c;
+  color:white;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search{
+  margin-top:5px;
+}
+
+
+/* =========================
+   SONG
+========================= */
+
+.song .badge{
+
+  display:inline-block;
+
+  padding:
+    6px 10px;
+
+  border-radius:20px;
+
+  background:#fff0d0;
+
+  color:#a65d00;
+
+  font-size:12px;
+
+  margin-bottom:10px;
+}
+
+.song h3{
+
+  color:var(--blue);
+
+  font-size:21px;
+
+  margin-bottom:12px;
+}
+
+.songText{
+
+  white-space:pre-wrap;
+
+  line-height:1.9;
+
+}
+
+.actions{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:7px;
+
+  margin-top:15px;
+}
+
+.actions .btn{
+  font-size:12px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+#formBox{
+  display:none;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+
+  text-align:center;
+
+  padding:30px;
+
+  color:var(--muted);
+
+}
+
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottomNav{
+
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:80px;
+
+  background:var(--blue);
+
+  display:flex;
+
+  justify-content:
+    space-around;
+
+  align-items:center;
+
+  z-index:1000;
+
+  box-shadow:
+    0 -4px 15px #0004;
+
+}
+
+.nav{
+
+  border:0;
+
+  background:none;
+
+  color:#dcecff;
+
+  font-size:11px;
+
+  min-width:55px;
+
+}
+
+.nav span{
+
+  display:block;
+
+  font-size:23px;
+
+  margin-bottom:3px;
+
+}
+
+.nav.active{
+
+  color:var(--gold);
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:#000c;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:2000;
+
+  padding:15px;
+
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+
+  width:100%;
+
+  max-width:650px;
+
+  max-height:90vh;
+
+  overflow:auto;
+
+  background:var(--card);
+
+  color:var(--text);
+
+  border-radius:20px;
+
+  padding:20px;
+
+}
+
+.modalTitle{
+
+  font-size:25px;
+
+  color:var(--blue);
+
+  margin:
+    15px 0;
+
+}
+
+.readerText{
+
+  white-space:pre-wrap;
+
+  line-height:1.9;
+
+  font-size:20px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:520px){
+
+  .row{
+
+    flex-direction:column;
+
+  }
+
+  .cover{
+
+    height:220px;
+
+  }
+
+  .headerText h1{
+
+    font-size:26px;
+
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="cover">
+
+    <div class="coverIcon">
+      🌅🎵
+    </div>
+
+  </div>
+
+
+  <div class="headerText">
+
+    <h1>
+      Baha Ifaa
+    </h1>
+
+    <p>
+      🎵 Faaruu Ayyaanaa Buhe
+    </p>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main>
+
+
+<!-- HOME -->
+
+<section
+  id="home"
+  class="page active">
+
+
+  <div class="card">
+
+    <h2>
+      🎉 Baga Nagaan Dhuftan
+    </h2>
+
+    <p>
+
+      Gara
+      <b>Baha Ifaa</b>
+      dhuftan.
+
+      As keessatti
+      Faaruu Ayyaanaa Buhe
+      galchuu, kuusuu,
+      barbaaduu, dubbisuu
+      fi jaallachuu dandeessa.
+
+    </p>
+
+  </div>
+
+
+  <!-- SEARCH -->
+
+  <input
+    id="searchInput"
+    class="search"
+    placeholder="🔎 Faaruu barbaadi..."
+    oninput="showSongs()"
+  >
+
+
+  <div class="row">
+
+    <button
+      class="btn green"
+      onclick="openForm()">
+
+      ➕ Faaruu Galchi
+
+    </button>
+
+
+    <button
+      class="btn blue"
+      onclick="shareApp()">
+
+      📤 Share
+
+    </button>
+
+  </div>
+
+
+  <br>
+
+
+  <div id="songList"></div>
+
+
+</section>
+
+
+<!-- ALL SONGS -->
+
+<section
+  id="all"
+  class="page">
+
+  <div class="card">
+
+    <h2>
+      🎵 Faaruuwwan Hunda
+    </h2>
+
+    <p>
+      Faaruuwwan ati galchite
+      hundi as keessatti argamu.
+    </p>
+
+  </div>
+
+
+  <div id="allList"></div>
+
+</section>
+
+
+<!-- FAVORITES -->
+
+<section
+  id="favorites"
+  class="page">
+
+  <div class="card">
+
+    <h2>
+      ❤️ Faaruuwwan Jaallataman
+    </h2>
+
+  </div>
+
+
+  <div id="favoriteList"></div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section
+  id="settings"
+  class="page">
+
+  <div class="card">
+
+    <h2>
+      ⚙️ Settings
+    </h2>
+
+
+    <p>
+      🌙 Dark Mode
+    </p>
+
+    <br>
+
+
+    <button
+      class="btn gray"
+      onclick="toggleDark()">
+
+      🌙 Dark / Light
+
+    </button>
+
+
+    <br><br>
+
+
+    <p>
+      🔠 Font Size
+    </p>
+
+
+    <select
+      id="globalFont"
+      onchange="changeFont()">
+
+      <option value="16px">
+        16px
+      </option>
+
+      <option
+        value="18px"
+        selected>
+
+        18px
+
+      </option>
+
+      <option value="20px">
+        20px
+      </option>
+
+      <option value="24px">
+        24px
+      </option>
+
+    </select>
+
+
+    <br>
+
+
+    <button
+      class="btn blue"
+      onclick="backupData()">
+
+      💾 Backup
+
+    </button>
+
+
+    <button
+      class="btn green"
+      onclick="
+      document
+      .getElementById('restoreFile')
+      .click()">
+
+      📥 Restore
+
+    </button>
+
+
+    <input
+      id="restoreFile"
+      type="file"
+      accept=".json"
+      style="display:none"
+      onchange="restoreData(event)"
+    >
+
+
+    <br><br>
+
+
+    <button
+      class="btn red"
+      onclick="clearAll()">
+
+      🗑️ Faaruu Hunda Haqi
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ADD / EDIT FORM
+========================= -->
+
+<div
+  id="formBox"
+  class="card">
+
+
+  <h2 id="formTitle">
+
+    🎵 Faaruu Haaraa
+
+  </h2>
+
+
+  <label>
+    Mata-duree Faaruu
+  </label>
+
+  <input
+    id="songTitle"
+    placeholder="Maqaa faaruu barreessi..."
+  >
+
+
+  <label>
+    Faaruu
+  </label>
+
+  <textarea
+    id="songText"
+    placeholder="Faaruu kee guutuu asitti barreessi..."
+  ></textarea>
+
+
+  <label>
+    🎨 Halluu Barreeffamaa
+  </label>
+
+  <input
+    id="songColor"
+    type="color"
+    value="#333333"
+  >
+
+
+  <label>
+    🔠 Font Size
+  </label>
+
+  <select id="songSize">
+
+    <option value="16px">
+      Xiqqaa
+    </option>
+
+    <option
+      value="18px"
+      selected>
+
+      Giddu-galeessa
+
+    </option>
+
+    <option value="21px">
+      Guddaa
+    </option>
+
+    <option value="24px">
+      Baay'ee Guddaa
+    </option>
+
+  </select>
+
+
+  <div class="row">
+
+    <button
+      class="btn green"
+      onclick="saveSong()">
+
+      💾 Kuusi
+
+    </button>
+
+
+    <button
+      class="btn gray"
+      onclick="closeForm()">
+
+      Cufi
+
+    </button>
+
+  </div>
+
+</div>
+
+
+</main>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="bottomNav">
+
+
+  <button
+    class="nav active"
+    onclick="
+    openPage(
+      'home',
+      this
+    )">
+
+    <span>🏠</span>
+    Home
+
+  </button>
+
+
+  <button
+    class="nav"
+    onclick="
+    openPage(
+      'all',
+      this
+    )">
+
+    <span>🎵</span>
+    Faaruu
+
+  </button>
+
+
+  <button
+    class="nav"
+    onclick="
+    openPage(
+      'favorites',
+      this
+    )">
+
+    <span>❤️</span>
+    Favorite
+
+  </button>
+
+
+  <button
+    class="nav"
+    onclick="
+    openPage(
+      'settings',
+      this
+    )">
+
+    <span>⚙️</span>
+    Settings
+
+  </button>
+
+
+</nav>
+
+
+<!-- =========================
+     READER MODAL
+========================= -->
+
+<div
+  id="readerModal"
+  class="modal">
+
+
+  <div class="modalBox">
+
+
+    <button
+      class="btn red"
+      onclick="closeReader()">
+
+      ✕ Cufi
+
+    </button>
+
+
+    <h2
+      id="readerTitle"
+      class="modalTitle">
+    </h2>
+
+
+    <div
+      id="readerText"
+      class="readerText">
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let songs =
+JSON.parse(
+  localStorage.getItem(
+    "bahaIfaaSongs"
+  ) || "[]"
+);
+
+
+let editIndex = -1;
+
+
+/* =========================
+   SAVE
+========================= */
+
+function saveData(){
+
+  localStorage.setItem(
+
+    "bahaIfaaSongs",
+
+    JSON.stringify(
+      songs
+    )
+
+  );
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text){
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+  div.textContent =
+    text;
+
+  return div.innerHTML;
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function openPage(
+  id,
+  button
+){
+
+  document
+  .querySelectorAll(
+    ".page"
+  )
+  .forEach(
+    page =>
+    page.classList
+    .remove(
+      "active"
+    )
+  );
+
+
+  const target =
+    document.getElementById(
+      id
+    );
+
+
+  if(target){
+
+    target.classList
+    .add(
+      "active"
+    );
+
+  }
+
+
+  document
+  .querySelectorAll(
+    ".nav"
+  )
+  .forEach(
+    nav =>
+    nav.classList
+    .remove(
+      "active"
+    )
+  );
+
+
+  button.classList
+  .add(
+    "active"
+  );
+
+
+  if(
+    id === "all"
+  ){
+
+    showAllSongs();
+
+  }
+
+
+  if(
+    id === "favorites"
+  ){
+
+    showFavorites();
+
+  }
+
+
+  window.scrollTo(
+    {
+      top:0,
+      behavior:"smooth"
+    }
+  );
+
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+function openForm(){
+
+  document
+  .getElementById(
+    "formBox"
+  )
+  .style.display =
+    "block";
+
+
+  document
+  .getElementById(
+    "songTitle"
+  )
+  .focus();
+
+}
+
+
+function closeForm(){
+
+  document
+  .getElementById(
+    "formBox"
+  )
+  .style.display =
+    "none";
+
+
+  document
+  .getElementById(
+    "songTitle"
+  )
+  .value =
+    "";
+
+
+  document
+  .getElementById(
+    "songText"
+  )
+  .value =
+    "";
+
+
+  document
+  .getElementById(
+    "songColor"
+  )
+  .value =
+    "#333333";
+
+
+  document
+  .getElementById(
+    "songSize"
+  )
+  .value =
+    "18px";
+
+
+  document
+  .getElementById(
+    "formTitle"
+  )
+  .textContent =
+    "🎵 Faaruu Haaraa";
+
+
+  editIndex =
+    -1;
+
+}
+
+
+/* =========================
+   SAVE SONG
+========================= */
+
+function saveSong(){
+
+  const title =
+    document
+    .getElementById(
+      "songTitle"
+    )
+    .value
+    .trim();
+
+
+  const text =
+    document
+    .getElementById(
+      "songText"
+    )
+    .value
+    .trim();
+
+
+  if(
+    !title ||
+    !text
+  ){
+
+    alert(
+      "Mata-duree fi faaruu guuti."
+    );
+
+    return;
+
+  }
+
+
+  const song = {
+
+    title:title,
+
+    text:text,
+
+    color:
+      document
+      .getElementById(
+        "songColor"
+      )
+      .value,
+
+    size:
+      document
+      .getElementById(
+        "songSize"
+      )
+      .value,
+
+    favorite:false
+
+  };
+
+
+  if(
+    editIndex === -1
+  ){
+
+    songs.push(
+      song
+    );
+
+  }
+
+  else{
+
+    song.favorite =
+      songs[
+        editIndex
+      ].favorite;
+
+    songs[
+      editIndex
+    ] =
+      song;
+
+  }
+
+
+  saveData();
+
+  closeForm();
+
+  showSongs();
+
+  showAllSongs();
+
+  showFavorites();
+
+}
+
+
+/* =========================
+   SONG CARD
+========================= */
+
+function songCard(
+  song,
+  index
+){
+
+  return `
+
+  <article class="song">
+
+    <span class="badge">
+
+      🎉 Faaruu
+      Ayyaanaa Buhe
+
+    </span>
+
+
+    <h3>
+
+      🎵
+      ${escapeHTML(
+        song.title
+      )}
+
+    </h3>
+
+
+    <div
+      class="songText"
+      style="
+      color:${song.color};
+      font-size:${song.size};
+      "
+    >
+
+      ${escapeHTML(
+        song.text
+      )}
+
+    </div>
+
+
+    <div
+      class="actions">
+
+
+      <button
+        class="btn blue"
+        onclick="
+        readSong(
+          ${index}
+        )">
+
+        🔊 Dubbisi
+
+      </button>
+
+
+      <button
+        class="btn purple"
+        onclick="
+        toggleFavorite(
+          ${index}
+        )">
+
+        ${
+          song.favorite
+          ? "💔 Favorite Baasi"
+          : "❤️ Favorite"
+        }
+
+      </button>
+
+
+      <button
+        class="btn orange"
+        onclick="
+        editSong(
+          ${index}
+        )">
+
+        ✏️ Sirreessi
+
+      </button>
+
+
+      <button
+        class="btn red"
+        onclick="
+        deleteSong(
+          ${index}
+        )">
+
+        🗑️ Haqi
+
+      </button>
+
+    </div>
+
+  </article>
+
+  `;
+
+}
+
+
+/* =========================
+   SHOW SONGS
+========================= */
+
+function showSongs(){
+
+  const box =
+    document
+    .getElementById(
+      "songList"
+    );
+
+
+  const input =
+    document
+    .getElementById(
+      "searchInput"
+    );
+
+
+  const search =
+    (
+      input.value ||
+      ""
+    )
+    .toLowerCase();
+
+
+  const result =
+    songs.filter(
+      song =>
+      (
+        song.title +
+        " " +
+        song.text
+      )
+      .toLowerCase()
+      .includes(
+        search
+      )
+    );
+
+
+  if(
+    result.length === 0
+  ){
+
+    box.innerHTML = `
+
+      <div
+        class="empty">
+
+        🎵 Faaruun hin jiru.
+
+        <br><br>
+
+        ➕
+        "Faaruu Galchi"
+        tuqi.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    result
+    .map(
+      song =>
+      songCard(
+        song,
+        songs.indexOf(
+          song
+        )
+      )
+    )
+    .join("");
+
+}
+
+
+/* =========================
+   SHOW ALL
+========================= */
+
+function showAllSongs(){
+
+  const box =
+    document
+    .getElementById(
+      "allList"
+    );
+
+
+  if(
+    songs.length === 0
+  ){
+
+    box.innerHTML = `
+
+      <div
+        class="empty">
+
+        🎵 Faaruun hin jiru.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    songs
+    .map(
+      songCard
+    )
+    .join("");
+
+}
+
+
+/* =========================
+   FAVORITES
+========================= */
+
+function showFavorites(){
+
+  const box =
+    document
+    .getElementById(
+      "favoriteList"
+    );
+
+
+  const favorites =
+    songs.filter(
+      song =>
+      song.favorite
+    );
+
+
+  if(
+    favorites.length === 0
+  ){
+
+    box.innerHTML = `
+
+      <div
+        class="empty">
+
+        ❤️
+        Favorite keessa
+        homtuu hin jiru.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    favorites
+    .map(
+      song =>
+      songCard(
+        song,
+        songs.indexOf(
+          song
+        )
+      )
+    )
+    .join("");
+
+}
+
+
+/* =========================
+   FAVORITE
+========================= */
+
+function toggleFavorite(
+  index
+){
+
+  songs[
+    index
+  ].favorite =
+    !songs[
+      index
+    ].favorite;
+
+
+  saveData();
+
+  showSongs();
+
+  showAllSongs();
+
+  showFavorites();
+
+}
+
+
+/* =========================
+   EDIT
+========================= */
+
+function editSong(
+  index
+){
+
+  const song =
+    songs[
+      index
+    ];
+
+
+  editIndex =
+    index;
+
+
+  document
+  .getElementById(
+    "formTitle"
+  )
+  .textContent =
+    "✏️ Faaruu Sirreessi";
+
+
+  document
+  .getElementById(
+    "songTitle"
+  )
+  .value =
+    song.title;
+
+
+  document
+  .getElementById(
+    "songText"
+  )
+  .value =
+    song.text;
+
+
+  document
+  .getElementById(
+    "songColor"
+  )
+  .value =
+    song.color ||
+    "#333333";
+
+
+  document
+  .getElementById(
+    "songSize"
+  )
+  .value =
+    song.size ||
+    "18px";
+
+
+  openForm();
+
+
+  window.scrollTo(
+    {
+      top:0,
+      behavior:"smooth"
+    }
+  );
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteSong(
+  index
+){
+
+  if(
+    !confirm(
+      "Faaruu kana haquu barbaaddaa?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  songs.splice(
+    index,
+    1
+  );
+
+
+  saveData();
+
+  showSongs();
+
+  showAllSongs();
+
+  showFavorites();
+
+}
+
+
+/* =========================
+   DELETE ALL
+========================= */
+
+function clearAll(){
+
+  if(
+    songs.length === 0
+  ){
+
+    alert(
+      "Faaruun hin jiru."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    confirm(
+      "Faaruuwwan HUNDA haquu barbaaddaa?"
+    )
+  ){
+
+    songs = [];
+
+    saveData();
+
+    showSongs();
+
+    showAllSongs();
+
+    showFavorites();
+
+  }
+
+}
+
+
+/* =========================
+   READ SONG
+========================= */
+
+function readSong(
+  index
+){
+
+  if(
+    !(
+      "speechSynthesis"
+      in window
+    )
+  ){
+
+    alert(
+      "Sagaleedhaan dubbisuu hin danda'u."
+    );
+
+    return;
+
+  }
+
+
+  speechSynthesis.cancel();
+
+
+  const speech =
+    new SpeechSynthesisUtterance(
+
+      songs[
+        index
+      ].title
+
+      + ". "
+
+      +
+
+      songs[
+        index
+      ].text
+
+    );
+
+
+  speech.lang =
+    "om-ET";
+
+
+  speech.rate =
+    0.9;
+
+
+  speech.pitch =
+    1;
+
+
+  speechSynthesis
+  .speak(
+    speech
+  );
+
+
+  document
+  .getElementById(
+    "readerTitle"
+  )
+  .textContent =
+    songs[
+      index
+    ].title;
+
+
+  document
+  .getElementById(
+    "readerText"
+  )
+  .textContent =
+    songs[
+      index
+    ].text;
+
+
+  document
+  .getElementById(
+    "readerModal"
+  )
+  .classList
+  .add(
+    "show"
+  );
+
+}
+
+
+function closeReader(){
+
+  speechSynthesis.cancel();
+
+
+  document
+  .getElementById(
+    "readerModal"
+  )
+  .classList
+  .remove(
+    "show"
+  );
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDark(){
+
+  document.body
+  .classList
+  .toggle(
+    "dark"
+  );
+
+
+  localStorage.setItem(
+
+    "bahaIfaaDark",
+
+    document.body
+    .classList
+    .contains(
+      "dark"
+    )
+    ? "1"
+    : "0"
+
+  );
+
+}
+
+
+/* =========================
+   FONT
+========================= */
+
+function changeFont(){
+
+  const size =
+    document
+    .getElementById(
+      "globalFont"
+    )
+    .value;
+
+
+  document
+  .querySelectorAll(
+    ".songText"
+  )
+  .forEach(
+    item =>
+    item.style
+    .fontSize =
+    size
+  );
